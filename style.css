@@ -1,0 +1,133 @@
+/* 
+WHAT IS GRID?
+grid is a tool used to align items and create layouts
+
+in grid we have 2 important concepts:
+THE GRID CONTAINER - the grid container is the container where all the grid items should be inside
+THE GRID ITEMS - the grid items are the items that you want to align inside the grid container
+we have properties for container and properties for items
+*/
+
+/* the grid system is based in columns and rows. */
+
+
+/* to start using grid you must have a grid container with the property display:grid; */
+.grid-container{
+    display: grid;
+}
+
+/* CONTAINER PROPERTIES */
+
+/* after setting the grid container to display grid we won't see any changes. Now we need to set the number of columns and rows that we want our container to be divided, and it's sizes */
+/* we are saying that our grid container will have 2 columns, the first will have 100px and the second 200px. And of course, we could add more columns if we wanted */
+/* instead of using pixels, in grid its very common to use fractions (fr) */
+.grid-container{
+    grid-template-columns: 100px 200px;
+}
+
+/* 
+instead of using pixels, in grid its very common to use fractions (fr).
+in the first example our 2 columns had a total of 300 pixels, the first 100 and the second 200
+when using fractions, the fractions will be relative to the total space available inside the container
+so supposing our container has 300 pixels, 1fr would be 100px and 2fr 200px
+*/
+.grid-container{
+    grid-template-columns: 1fr 2fr;
+}
+
+/* we cam space columns using the property column gap
+*/
+.grid-container{
+    column-gap: 10px;
+}
+
+/* by default all the rows will have the height of the biggest element in that particular row.
+    you can set a value to the height of all the rows using the property grid-auto-rows.
+    it will make all the rows have the same size, regardless it content.
+*/
+
+.grid-container{
+    grid-auto-rows: 200px;
+}
+
+/* you also have auto-columns which are the same, but for columns */
+.grid-container{
+    grid-auto-columns: 200px;
+}
+
+
+/* we also have grid-auto-flow, that works similarly to flex direction.
+    by default, the grid flow is rows,every item will be place under the other creating new rows.
+    you can change it to columns, and instead of creating new rows, the items will be placed side by side creating new columns for each item
+*/
+.grid-container{
+    grid-auto-flow: column;
+}
+
+
+
+
+/* we can use the function minmax to determine the minimum size of a row and the maximum
+    in this example we are setting the minimum to 200px and the maximum is automatically set by the biggest item height
+*/
+.grid-container{
+    grid-auto-rows: minmax(200px,auto);   
+}
+
+/* you don't need to set all the rows to the same size,we can work individually with rows as same as we did with the columns
+    all the properties that we learn for columns also works for rows
+    we can use grid-template-rows and row-gap to work individually with rows
+*/
+
+.grid-container{
+    grid-template-rows: 1fr 1fr 1fr;
+    row-gap: 10px;
+}
+
+/* we can also use align items and justify items, and align content and justify content,
+    the items properties will position the items inside their columns/rows, and the content will position the columns and rows boxes in the grid container
+    we can also use align self and justify to align a item inside a column/row
+*/
+
+.grid-container{
+    justify-items: center;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+ 
+
+
+
+/* ITEMS PROPERTIES */
+
+/* this has nothing to do with grid, but using nth-of-type(1) means: select the first element that has the class .grid-item */
+
+/* we can individually position items among our columns and rows
+    we can use the properties grid-column-start and grid-column-end in our items in order to span them across our columns
+    in the example above we are saying that our item should span from the column line 1 until the column line 3
+*/
+
+.grid-item:nth-of-type(1){
+grid-column-start: 1;
+grid-column-end: 3;
+}
+
+
+/* we have the same thing for rows */
+.grid-item:nth-of-type(1){
+grid-row-start: 1;
+grid-column-end: 3;
+}
+
+
+/* you can also use a syntax sugar to do it easier
+    starts 1, ends 3
+*/
+.grid-item:nth-of-type(1){
+    grid-column: 1/3;
+    }
+
+
+
